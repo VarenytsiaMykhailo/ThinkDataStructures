@@ -196,6 +196,9 @@ public class MyArrayList<T> implements List<T> {
         return element;
     }
 
+
+    //! Кажется этот метод имеет асимптотику O(n^2) т.к. remove(Object obj) имеет асимптотику O(n^2),
+    // тогда как автор книги характеризует его как линейный O(n)
     @Override
     public boolean removeAll(Collection<?> collection) {
         boolean flag = true;
