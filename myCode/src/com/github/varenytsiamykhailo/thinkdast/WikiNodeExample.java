@@ -43,6 +43,8 @@ public class WikiNodeExample {
                 System.out.print(node);
             }
         }
+
+        // WikiFetcher wf = WikiFetcher.getInstance();
     }
 
     private static void iterativeDFS(Node root) {

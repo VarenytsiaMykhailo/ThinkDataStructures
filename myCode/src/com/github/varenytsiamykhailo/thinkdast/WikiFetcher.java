@@ -13,8 +13,28 @@ import org.jsoup.select.Elements;
 
 
 public class WikiFetcher {
+    private static WikiFetcher instance = null; // static variable for Singleton pattern
+
+
     private long lastRequestTime = -1;
-    private long minInterval = 1000;
+    private long minInterval = 1000; // default min interval
+
+
+    // Singleton pattern realisation. Use getInstance() method to create instance
+    private WikiFetcher() {
+    }
+
+    private WikiFetcher(long minInterval) {
+        this.minInterval = minInterval;
+    }
+
+    public static WikiFetcher getInstance() {
+        return instance == null ? new WikiFetcher() : instance;
+    }
+
+    public static WikiFetcher getInstance(long minInterval) {
+        return instance == null ? new WikiFetcher(minInterval) : instance;
+    }
 
     /**
      * Fetches and parses a URL string, returning a list of paragraph elements.
