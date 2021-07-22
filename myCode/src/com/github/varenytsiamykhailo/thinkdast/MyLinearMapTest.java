@@ -18,12 +18,9 @@ import org.junit.Test;
 public class MyLinearMapTest {
 
     protected Map<String, Integer> map;
-
-    /**
-     * @throws java.lang.Exception
-     */
+    
     @Before
-    public void setUp() throws Exception {
+    public void setUp() {
         map = new MyLinearMap<String, Integer>();
         map.put("One", 1);
         map.put("Two", 2);

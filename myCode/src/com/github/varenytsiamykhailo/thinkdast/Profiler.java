@@ -114,7 +114,7 @@ public class Profiler extends ApplicationFrame {
      */
     public void plotResults(XYSeries series) {
         double slope = estimateSlope(series);
-        System.out.println("Estimated slope= " + slope);
+        System.out.println("Estimated slope = " + slope);
 
         final XYSeriesCollection dataset = new XYSeriesCollection();
         dataset.addSeries(series);
