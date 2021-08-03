@@ -2,10 +2,8 @@ package com.github.varenytsiamykhailo.thinkdast;
 
 import org.jfree.data.xy.XYSeries;
 
-import java.util.ArrayList;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
+
 import com.github.varenytsiamykhailo.thinkdast.Profiler.Timeable;
 
 public class ProfileMapPut {
@@ -14,8 +12,30 @@ public class ProfileMapPut {
      */
     public static void main(String[] args) {
         //profileHashMapPut();
-        profileMyHashMapPut();
-        //profileMyFixedHashMapPut();
+        //profileMyHashMapPut();
+        profileMyFixedHashMapPut();
+    }
+
+    /**
+     * Characterize the run time of putting a key in java.util.HashMap
+     */
+    public static void profileHashMapPut() {
+        Timeable timeable = new Timeable() {
+            Map<String, Integer> map;
+
+            public void setup(int n) {
+                map = new HashMap<String, Integer>();
+            }
+
+            public void timeMe(int n) {
+                for (int i=0; i<n; i++) {
+                    map.put(String.format("%10d", i), i);
+                }
+            }
+        };
+        int startN = 8000;
+        int endMillis = 1000;
+        runProfiler("HashMap put", timeable, startN, endMillis);
     }
 
     /**
@@ -38,6 +58,28 @@ public class ProfileMapPut {
         int startN = 1000;
         int endMillis = 5000;
         runProfiler("MyHashMap put", timeable, startN, endMillis);
+    }
+
+    /**
+     * Characterize the run time of putting a key in MyFixedHashMap
+     */
+    public static void profileMyFixedHashMapPut() {
+        Timeable timeable = new Timeable() {
+            Map<String, Integer> map;
+
+            public void setup(int n) {
+                map = new MyFixedHashMap<String, Integer>();
+            }
+
+            public void timeMe(int n) {
+                for (int i=0; i<n; i++) {
+                    map.put(String.format("%10d", i), i);
+                }
+            }
+        };
+        int startN = 8000;
+        int endMillis = 1000;
+        runProfiler("MyFixedHashMap put", timeable, startN, endMillis);
     }
 
     /**
